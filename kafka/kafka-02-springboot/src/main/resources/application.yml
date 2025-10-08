@@ -1,0 +1,32 @@
+server:
+  port: 8090
+
+spring:
+  kafka:
+    # Kafka服务器地址，多个用逗号分隔
+    bootstrap-servers: 192.168.56.10:9092
+
+    # 生产者配置
+    producer:
+      retries: 3 # 失败重试次数
+      batch-size: 16384 # 批量大小
+      buffer-memory: 33554432 # 缓冲区大小
+      acks: 1 # 消息确认机制
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    # 消费者配置
+    consumer:
+      group-id: demo-group # 消费者组ID
+      auto-offset-reset: earliest # 偏移量重置策略
+      enable-auto-commit: false # 是否自动提交偏移量
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    # 监听器配置
+    listener:
+      ack-mode: MANUAL_IMMEDIATE # 手动立即提交偏移量
+
+logging:
+  level:
+    org.apache.kafka.clients.NetworkClient: error

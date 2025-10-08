@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: kafka-04-offset
+  
+  kafka:
+    # Kafka 服务器配置
+    bootstrap-servers: 192.168.56.10:9092
+    
+    # 管理配置 - 自动创建主题
+    admin:
+      client-id: kafka-04-offset-admin
+      properties:
+        auto.create.topics.enable: true
+    
+    # 生产者配置
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+      batch-size: 16384
+      linger-ms: 1
+      buffer-memory: 33554432
+      properties:
+        # 允许自动创建主题
+        auto.create.topics.enable: true
+    
+    # 消费者配置 - 默认配置
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: kafka-04-offset-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      auto-commit-interval-ms: 1000
+      session-timeout-ms: 30000
+      max-poll-records: 500
+      max-poll-interval-ms: 300000
+
+# 自定义配置
+kafka:
+  topics:
+    test-topic: kafka-04-offset-test
+    earliest-topic: kafka-04-offset-earliest
+    latest-topic: kafka-04-offset-latest
+    none-topic: kafka-04-offset-none
+  
+  # 不同偏移量策略的消费者组配置
+  consumer-groups:
+    earliest-group: kafka-04-earliest-group
+    latest-group: kafka-04-latest-group
+    none-group: kafka-04-none-group
+
+# 日志配置
+logging:
+  level:
+    com.action.kafka04offset: DEBUG
+    org.springframework.kafka: INFO
+    org.apache.kafka: WARN

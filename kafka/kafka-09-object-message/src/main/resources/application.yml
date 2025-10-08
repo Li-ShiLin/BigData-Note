@@ -1,0 +1,71 @@
+# ========================================
+# Kafka 对象消息演示应用配置
+# ========================================
+
+# 应用名称
+spring:
+  application:
+    name: kafka-09-object-message
+
+  # ========================================
+  # Kafka 连接配置
+  # ========================================
+  # Kafka 服务器地址（多个地址用逗号分隔）
+  # 默认：localhost:9092
+  kafka:
+    bootstrap-servers: 192.168.56.10:9092
+
+    # ========================================
+    # 生产者配置
+    # ========================================
+    # 键序列化器：将消息键序列化为字节数组
+    # 使用字符串序列化器，适合演示场景
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 值序列化器：将消息值序列化为字节数组
+      # 使用字符串序列化器，适合演示场景
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    # ========================================
+    # 消费者配置
+    # ========================================
+    consumer:
+      # 消费者组ID
+      group-id: object-message-group
+      # 键反序列化器：将字节数组反序列化为字符串
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 值反序列化器：将字节数组反序列化为字符串
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 自动提交偏移量：false表示手动提交
+      enable-auto-commit: false
+      # 偏移量重置策略：earliest表示从最早的消息开始消费
+      auto-offset-reset: earliest
+
+    # ========================================
+    # 消息监听器配置
+    # ========================================
+    listener:
+      # 开启消息监听的手动确认模式
+      ack-mode: manual
+
+# ========================================
+# 服务器配置
+# ========================================
+# 服务器端口配置
+server:
+  port: 9099
+
+# ========================================
+# 自定义的配置
+# ========================================
+kafka:
+  topic:
+    # 字符串消息主题名称
+    string: string-message-topic
+    # 用户对象消息主题名称
+    user: user-message-topic
+    # 通用对象消息主题名称
+    object: object-message-topic
+  consumer:
+    # 消费者组ID（与spring.kafka.consumer.group-id保持一致）
+    group: object-message-group
