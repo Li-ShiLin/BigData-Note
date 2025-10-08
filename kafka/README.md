@@ -1197,11 +1197,11 @@ sudo docker run -d \
 
 外部环境连接`Kafka`测试：`idea`中下载`kafka`插件进行连接。下载`kafka`插件之前要安装`Big Data Tools`插件
 
-![image-20251002010011003](E:\dljd-kafka\img\image-20251002010011003.png)
+![image-20251002010011003](./img/image-20251002010011003.png)
 
 
 
-![image-20250929031953023](E:\dljd-kafka\img\image-20250929031953023.png)
+![image-20250929031953023](./img/image-20250929031953023.png)
 
 重启虚拟机以后假如容器已经停止，可以查看之前的容器id进行启动
 
@@ -3311,10 +3311,10 @@ Kafka生产者分区策略：
 >        public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
 >            List<PartitionInfo> partitions = cluster.partitionsForTopic(topic);
 >            int numPartitions = partitions.size();
->                
+>                   
 >            // 从value中解析出region信息
 >            String region = parseRegionFromValue(value);
->                
+>                   
 >            if ("shanghai".equals(region)) {
 >                // 上海的数据映射到前两个分区
 >                return Math.abs("shanghai".hashCode()) % 2;
