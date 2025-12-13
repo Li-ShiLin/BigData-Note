@@ -1,0 +1,10 @@
+Mary,./home,1000
+Bob,./cart,2000
+Alice,./fav,3000
+Bob,./prod?id=1,4000
+Mary,./home,5000
+Bob,./cart,6000
+Cary,./prod?id=2,7000
+Alice,./fav,8000
+Bob,./home,9000
+Mary,./cart,10000

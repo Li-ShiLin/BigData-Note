@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.action</groupId>
+        <artifactId>flink-java</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>flink-01-quickstart</artifactId>
+    <packaging>jar</packaging>
+
+    <name>flink-01-quickstart</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!-- ==================== Flink 核心依赖 ==================== -->
+        <!-- flink-java: Flink核心Java API，提供批处理DataSet API -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+        </dependency>
+
+        <!-- flink-streaming-java: Flink流处理Java API，提供DataStream API -->
+        <!-- 注意：依赖Scala版本，因为Flink底层使用Akka进行分布式通信，而Akka是用Scala开发的 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <!--最终解析为 org.apache.flink:flink-streaming-java_2.12:jar:1.13.0:compile-->
+        </dependency>
+
+        <!-- flink-clients: Flink客户端依赖，提供作业提交和客户端功能 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-clients_${scala.binary.version}</artifactId>
+        </dependency>
+
+        <!-- ==================== 日志管理依赖 ==================== -->
+        <!-- slf4j-api: 日志门面接口 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- slf4j-log4j12: slf4j到log4j的桥接器 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+
+        <!-- log4j-to-slf4j: log4j到slf4j的桥接器，避免日志冲突 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+        </dependency>
+
+        <!-- ==================== 测试依赖 ==================== -->
+        <!-- JUnit 4: 单元测试框架 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ==================== 构建配置 ==================== -->
+    <build>
+        <plugins>
+            <!-- Maven执行插件 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+            </plugin>
+            <!-- 启用父 POM 管理的 maven-assembly-plugin 配置 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
