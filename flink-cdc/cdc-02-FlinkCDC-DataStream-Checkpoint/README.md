@@ -123,55 +123,50 @@ public class FlinkCDC_DataStream_Initial_Checkpoint {
 ## 5.MySQL 测试准备
 
 ```sql
--- 建库：IF NOT EXISTS 避免重复创建，utf8mb4 支持完整 Unicode（含 emoji）
-CREATE
-DATABASE IF NOT EXISTS test
+-- =============================================
+-- 数据库及表结构初始化脚本（含表重建逻辑）
+-- 规范：IF NOT EXISTS 避免重复创建、utf8mb4 支持完整Unicode（含emoji）
+-- 逻辑：删旧表→建新表→基础数据操作
+-- =============================================
+
+-- 1. 创建数据库（避免重复创建，指定字符集和排序规则）
+CREATE DATABASE IF NOT EXISTS test
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
--- 切换到目标数据库
-USE
-test;
+-- 2. 切换到目标数据库
+USE test;
 
--- 先删除旧表（如有），避免表结构冲突
+-- 3. 清理历史表结构（如有），避免表结构冲突
 DROP TABLE IF EXISTS t1;
 
--- 创建表 t1（InnoDB引擎，utf8mb4编码，主键约束+字段注释）
-CREATE TABLE IF NOT EXISTS t1
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
+-- 4. 创建表 t1（InnoDB引擎，utf8mb4编码，带主键约束和字段注释）
+CREATE TABLE IF NOT EXISTS t1 (
+    id   VARCHAR(255) NOT NULL COMMENT '主键',
+    name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+    -- 主键约束
+    PRIMARY KEY (id)
 )
-    ) ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_unicode_ci
-    COMMENT = '表t1';
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_unicode_ci
+COMMENT = '表t1';
 
--- 批量插入初始数据（显式指定字段名，提升代码健壮性）
+-- 5. 批量插入初始数据（显式指定字段名，避免字段顺序变更异常）
 INSERT INTO t1 (id, name)
-VALUES ('1001', 'zhangsan'),
-       ('1002', 'lisi'),
-       ('1003', 'wangwu'),
-       ('1004', 'sun4');
+VALUES 
+    ('1001', 'zhangsan'),
+    ('1002', 'lisi'),
+    ('1003', 'wangwu'),
+    ('1004', 'sun4');
 
--- 更新指定记录
+-- 6. 更新指定记录（按主键精准更新）
 UPDATE t1
 SET name = 'wangwu-updated'
 WHERE id = '1003';
 
--- 删除指定记录
-DELETE
-FROM t1
+-- 7. 删除指定记录（按主键精准删除）
+DELETE FROM t1
 WHERE id = '1004';
 ```
 

@@ -253,7 +253,10 @@ CREATE DATABASE IF NOT EXISTS test
 -- 切换到目标数据库
 USE test;
 
--- 创建表 t1（InnoDB引擎，utf8mb4编码，带主键和字段注释）
+-- 先删除旧表（如有），避免表结构冲突
+DROP TABLE IF EXISTS t1;
+
+-- 创建表 t1（InnoDB引擎，utf8mb4编码，主键约束+字段注释）
 CREATE TABLE IF NOT EXISTS t1 (
     id VARCHAR(255) NOT NULL COMMENT '主键',
     name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
@@ -263,7 +266,7 @@ CREATE TABLE IF NOT EXISTS t1 (
   COLLATE = utf8mb4_unicode_ci 
   COMMENT = '表t1';
 
--- 插入历史数据（显式指定字段名，避免字段顺序变更导致异常）
+-- 批量插入初始数据（显式指定字段名，提升代码健壮性）
 INSERT INTO t1 (id, name) VALUES 
     ('1001', 'zhangsan'),
     ('1002', 'lisi'),

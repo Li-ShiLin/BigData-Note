@@ -38,7 +38,7 @@ build/
 .DS_Store
 
 ### cdc-05: 允许该模块下指定的二进制/依赖（非 target 目录）提交 ###
-!cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-1.18.0-bin-scala_2.12.tgz
+# flink-1.18.0-bin-scala_2.12.tgz 超过 GitHub 100MB 限制，不纳入版本控制，请本地解压使用
 !cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-3.0.0-bin.tar.gz
 !cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-pipeline-connector-doris-3.0.0.jar
 !cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-pipeline-connector-mysql-3.0.0.jar

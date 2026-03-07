@@ -70,15 +70,11 @@ source 组件。
 在MySQL中创建数据库及表，使用 MySQL 客户端连接后执行以下 SQL：
 
 ```sql
-#
-mysql版本
-： 5.7.38
+# mysql版本： 5.7.38
 [vagrant@server02 ~]$ mysql -uroot -p
 Enter password:
-# mysql版本
-： 5.7.38
-mysql>
-SELECT VERSION();
+# mysql版本： 5.7.38
+mysql> SELECT VERSION();
 +------------+
 | VERSION()  |
 +------------+
@@ -86,125 +82,55 @@ SELECT VERSION();
 +------------+
 
 -- 建库：IF NOT EXISTS 避免重复创建，utf8mb4 支持完整 Unicode（含 emoji）
-CREATE
-DATABASE IF NOT EXISTS test
+CREATE DATABASE IF NOT EXISTS test
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-CREATE
-DATABASE IF NOT EXISTS test_route
+CREATE DATABASE IF NOT EXISTS test_route
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
 -- test 库下的表
-USE
-test;
+USE test;
 
-CREATE TABLE IF NOT EXISTS t1
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t1';
+CREATE TABLE IF NOT EXISTS t1 (
+  id   VARCHAR(255) NOT NULL COMMENT '主键',
+  name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t1';
 
-CREATE TABLE IF NOT EXISTS t2
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t2';
+CREATE TABLE IF NOT EXISTS t2 (
+  id   VARCHAR(255) NOT NULL COMMENT '主键',
+  name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t2';
 
-CREATE TABLE IF NOT EXISTS t3
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    sex VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '性别',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t3';
+CREATE TABLE IF NOT EXISTS t3 (
+  id  VARCHAR(255) NOT NULL COMMENT '主键',
+  sex VARCHAR(255) DEFAULT NULL COMMENT '性别',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t3';
 
 -- test_route 库下的表（结构同上）
-USE
-test_route;
+USE test_route;
 
-CREATE TABLE IF NOT EXISTS t1
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t1';
+CREATE TABLE IF NOT EXISTS t1 (
+  id   VARCHAR(255) NOT NULL COMMENT '主键',
+  name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t1';
 
-CREATE TABLE IF NOT EXISTS t2
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t2';
+CREATE TABLE IF NOT EXISTS t2 (
+  id   VARCHAR(255) NOT NULL COMMENT '主键',
+  name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t2';
 
-CREATE TABLE IF NOT EXISTS t3
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    sex VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '性别',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t3';
+CREATE TABLE IF NOT EXISTS t3 (
+  id  VARCHAR(255) NOT NULL COMMENT '主键',
+  sex VARCHAR(255) DEFAULT NULL COMMENT '性别',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='表t3';
 ```
 
 ### 2.2 插入数据
@@ -212,51 +138,31 @@ CREATE TABLE IF NOT EXISTS t3
 **1）在test数据库中插入数据**
 
 ```sql
-use
-test;
-INSERT INTO t1
-VALUES ('1001', 'zhangsan');
-INSERT INTO t1
-VALUES ('1002', 'lisi');
-INSERT INTO t1
-VALUES ('1003', 'wangwu');
-INSERT INTO t2
-VALUES ('1001', 'zhangsan');
-INSERT INTO t2
-VALUES ('1002', 'lisi');
-INSERT INTO t2
-VALUES ('1003', 'wangwu');
-INSERT INTO t3
-VALUES ('1001', 'F');
-INSERT INTO t3
-VALUES ('1002', 'F');
-INSERT INTO t3
-VALUES ('1003', 'M');
+use test;
+INSERT INTO t1 VALUES('1001','zhangsan');
+INSERT INTO t1 VALUES('1002','lisi');
+INSERT INTO t1 VALUES('1003','wangwu');
+INSERT INTO t2 VALUES('1001','zhangsan');
+INSERT INTO t2 VALUES('1002','lisi');
+INSERT INTO t2 VALUES('1003','wangwu');
+INSERT INTO t3 VALUES('1001','F');
+INSERT INTO t3 VALUES('1002','F');
+INSERT INTO t3 VALUES('1003','M');
 ```
 
 **2）在test_route数据库中插入数据**
 
 ```sql
-use
-test_route;
-INSERT INTO t1
-VALUES ('1001', 'zhangsan');
-INSERT INTO t1
-VALUES ('1002', 'lisi');
-INSERT INTO t1
-VALUES ('1003', 'wangwu');
-INSERT INTO t2
-VALUES ('1004', 'zhangsan');
-INSERT INTO t2
-VALUES ('1005', 'lisi');
-INSERT INTO t2
-VALUES ('1006', 'wangwu');
-INSERT INTO t3
-VALUES ('1001', 'F');
-INSERT INTO t3
-VALUES ('1002', 'F');
-INSERT INTO t3
-VALUES ('1003', 'M');
+use test_route;
+INSERT INTO t1 VALUES('1001','zhangsan');
+INSERT INTO t1 VALUES('1002','lisi');
+INSERT INTO t1 VALUES('1003','wangwu');
+INSERT INTO t2 VALUES('1004','zhangsan');
+INSERT INTO t2 VALUES('1005','lisi');
+INSERT INTO t2 VALUES('1006','wangwu');
+INSERT INTO t3 VALUES('1001','F');
+INSERT INTO t3 VALUES('1002','F');
+INSERT INTO t3 VALUES('1003','M');
 ```
 
 ### 2.3 开启MySQL Binlog并重启MySQL
@@ -285,37 +191,33 @@ binlog-do-db=test_route
 重启MySQL服务，让配置生效
 
 ```sql
-#
-通用重启命令
-，适配大多数Linux发行版
+# ========== 通用MySQL重启命令（适配CentOS7+/RHEL7+/Ubuntu16.04+等主流Linux发行版） ==========
+# 重启MySQL服务（mysqld是多数发行版的服务名）
 sudo systemctl restart mysqld
-# 验证服务是否启动成功
-（显示active(running)即正常
-）
+
+# ========== 验证服务启动状态 ==========
+# 查看MySQL服务状态（核心：显示active(running)即为启动成功）
 sudo systemctl status mysqld
 ```
 
 登录MySQL，验证配置是否生效
 
 ```sql
-#
-登录MySQL客户端
+# 登录MySQL客户端（执行后输入密码即可登录）
 mysql -uroot -p
 
+-- 1. 检查binlog是否开启（核心：log_bin的值为ON表示已开启，OFF为未开启）
+SHOW VARIABLES LIKE '%log_bin%';
 
--- 1. 检查binlog是否开启（log_bin为ON即正常）
-show variables like '%log_bin%';
--- 2. 检查binlog格式和行镜像（必须为ROW和FULL）
-show
-variables like 'binlog_format';
-show
-variables like 'binlog_row_image';
--- 3. 检查指定的同步库（显示test和test_route即生效）
-show
-variables like 'binlog_do_db';
--- 若用了replicate-wild-do-table，执行以下命令检查
-show
-variables like 'replicate_wild_do_table';
+-- 2. 检查binlog格式和行镜像（数据同步必备：必须分别为ROW和FULL）
+SHOW VARIABLES LIKE 'binlog_format';
+SHOW VARIABLES LIKE 'binlog_row_image';
+
+-- 3. 检查指定的同步数据库（生效条件：值显示test,test_route即为配置成功）
+SHOW VARIABLES LIKE 'binlog_do_db';
+
+-- 若配置了通配符表同步规则，执行以下命令检查（按需执行）
+SHOW VARIABLES LIKE 'replicate_wild_do_table';
 ```
 
 ## 3.`DataStream API`方式的应用
@@ -711,48 +613,40 @@ public class FlinkCDC_DataStream_Initial_Checkpoint {
 
 ```sql
 -- 建库：IF NOT EXISTS 避免重复创建，utf8mb4 支持完整 Unicode（含 emoji）
-CREATE
-DATABASE IF NOT EXISTS test
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS test
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
-USE
-test;
-drop table t1;
-CREATE TABLE IF NOT EXISTS t1
-(
-    id
-    VARCHAR
-(
-    255
-) NOT NULL COMMENT '主键',
-    name VARCHAR
-(
-    255
-) DEFAULT NULL COMMENT '姓名',
-    PRIMARY KEY
-(
-    id
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE =utf8mb4_unicode_ci COMMENT='表t1';
+-- 切换到目标数据库
+USE test;
 
+-- 先删除旧表（如有），建议用 IF EXISTS 避免表不存在时报错
+DROP TABLE IF EXISTS t1;
 
--- 先插入一些历史数据
-INSERT INTO t1
-VALUES ('1001', 'zhangsan');
-INSERT INTO t1
-VALUES ('1002', 'lisi');
-INSERT INTO t1
-VALUES ('1003', 'wangwu');
-INSERT INTO t1
-VALUES ('1004', 'sun4');
+-- 创建表 t1（InnoDB引擎 + utf8mb4编码 + 主键约束 + 字段/表注释）
+CREATE TABLE IF NOT EXISTS t1 (
+    id VARCHAR(255) NOT NULL COMMENT '主键',
+    name VARCHAR(255) DEFAULT NULL COMMENT '姓名',
+    PRIMARY KEY (id)
+) ENGINE = InnoDB 
+  DEFAULT CHARSET = utf8mb4 
+  COLLATE = utf8mb4_unicode_ci 
+  COMMENT = '表t1';
 
--- 执行一些历史更新和删除操作
-UPDATE t1
-SET name='wangwu-updated'
+-- 批量插入历史数据（显式指定字段名，提升代码健壮性）
+INSERT INTO t1 (id, name) VALUES 
+    ('1001', 'zhangsan'),
+    ('1002', 'lisi'),
+    ('1003', 'wangwu'),
+    ('1004', 'sun4');
+
+-- 更新指定记录（id=1003）
+UPDATE t1 
+SET name = 'wangwu-updated' 
 WHERE id = '1003';
-DELETE
-FROM t1
+
+-- 删除指定记录（id=1004）
+DELETE FROM t1 
 WHERE id = '1004';
 ```
 
