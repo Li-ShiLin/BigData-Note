@@ -1,0 +1,44 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### cdc-05: 允许该模块下指定的二进制/依赖（非 target 目录）提交 ###
+!cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-1.18.0-bin-scala_2.12.tgz
+!cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-3.0.0-bin.tar.gz
+!cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-pipeline-connector-doris-3.0.0.jar
+!cdc-05-MySQL-to-Doris-Streaming-ETL-Implementation/flink-cdc-pipeline-connector-mysql-3.0.0.jar
