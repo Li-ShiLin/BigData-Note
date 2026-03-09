@@ -17,6 +17,7 @@
         <module>cdc-02-FlinkCDC-DataStream-Checkpoint</module>
         <module>cdc-03-FlinkCDC-SQL</module>
         <module>cdc-04-FlinkCDC-SQL-Checkpoint</module>
+        <module>cdc-06-mysql-redis-cache-consistency</module>
     </modules>
 
     <!-- 核心配置：统一版本与编码，子模块继承 -->

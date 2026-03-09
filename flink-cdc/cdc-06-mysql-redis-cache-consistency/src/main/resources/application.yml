@@ -1,0 +1,6 @@
+logging:
+  level:
+    root: info
+    org.apache.flink: warn
+    com.ververica.cdc: warn
+    com.action.flinkcdc: info
